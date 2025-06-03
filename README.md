@@ -1,5 +1,6 @@
 # NPC-Replacer-Command
 This is the github version of the NPC Replacer Command I posted on the Garry's Mod Steam Workshop.
+https://steamcommunity.com/sharedfiles/filedetails/?id=3492368069
 
 Adds 2 commands to your chat and console. One lets you replace all of the chosen spawned NPCs with another of your choosing and the other one tells you the classes and models of all spawned NPCs.
 
