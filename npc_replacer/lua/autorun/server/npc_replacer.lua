@@ -1,6 +1,3 @@
--- NPC Replacer Addon (Final Working Version)
--- Save as: addons/npc_replacer/lua/autorun/server/npc_replacer.lua
-
 if SERVER then
     -- Define a table of restricted NPC classes
     local RESTRICTED_NPC_CLASSES = {
@@ -287,6 +284,141 @@ if SERVER then
         return parsed
     end
 
+    ----------------------------------------------------------------------
+    -- NPC Class Kill functionality
+    ----------------------------------------------------------------------
+    local function RemoveNPCs(targetClass, targetModel, ply)
+        -- Check for restricted classes
+        if RESTRICTED_NPC_CLASSES[string.lower(targetClass)] then
+            local msg = GetColoredChatMsg("\x04", "❌ Error: Cannot kill '" .. targetClass .. "'. This NPC class is restricted.")
+            print(msg)
+            if IsValid(ply) then ply:ChatPrint(msg) ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
+            return
+        end
+
+        local dissolveType = 0 -- 0 = Energy
+        local removedCount = 0
+        local totalFound = 0
+        local pendingRemovals = 0
+
+        local specificTargetModel = nil
+        if targetModel and targetModel ~= "" then
+            specificTargetModel = string.lower(targetModel)
+            print("Attempting to target model: " .. specificTargetModel)
+        end
+
+        -- Collect NPCs to kill
+        local npcsToKill = {}
+        for _, npc in ipairs(ents.FindByClass(targetClass)) do
+            if IsValid(npc) then
+                local npcModel = npc:GetModel() or ""
+                npcModel = string.lower(npcModel)
+                local modelMatches = false
+
+                if specificTargetModel then
+                    if npcModel == specificTargetModel then
+                        modelMatches = true
+                    end
+                else
+                    modelMatches = true
+                end
+
+                if modelMatches then
+                    table.insert(npcsToKill, npc)
+                    totalFound = totalFound + 1
+                end
+            end
+        end
+
+        if totalFound == 0 then
+            local msg = GetColoredChatMsg("\x07", "❌ No " .. targetClass .. " NPCs" .. (specificTargetModel and " with model " .. specificTargetModel or "") .. " found to kill!")
+            print(msg)
+            if IsValid(ply) then
+                ply:ChatPrint(msg)
+                ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")")
+            end
+            return
+        end
+
+        pendingRemovals = totalFound
+
+        -- Kill logic
+        for _, npc in ipairs(npcsToKill) do
+            local dissolverName = "npc_classkill_diss_" .. CurTime() .. "_" .. math.random(10000)
+            
+            local npcOriginalName = npc:GetName()
+            if npcOriginalName == "" then
+                npc:SetName("temp_dissolve_target_" .. CurTime() .. "_" .. math.random(10000))
+            end
+
+            local dissolver = ents.Create("env_entity_dissolver")
+            if IsValid(dissolver) then
+                dissolver:SetName(dissolverName)
+                dissolver:SetKeyValue("dissolvetype", tostring(dissolveType))
+                dissolver:Spawn()
+                dissolver:Activate()
+                
+                dissolver:Fire("Dissolve", npc:GetName(), 0)
+                
+                timer.Simple(0.2, function()
+                    if IsValid(npc) then
+                        npc:Remove()
+                    end
+                    
+                    if IsValid(dissolver) then
+                        dissolver:Remove()
+                    end
+
+                    removedCount = removedCount + 1
+                    pendingRemovals = pendingRemovals - 1
+
+                    if pendingRemovals == 0 then
+                        local msg
+                        if removedCount == 0 then
+                            msg = GetColoredChatMsg("\x07", "⚠️ Failed to kill " .. targetClass .. (specificTargetModel and " with model " .. specificTargetModel or "") .. "!")
+                        else
+                            msg = GetColoredChatMsg("\x05", string.format("✅ Killed %d/%d %s%s", 
+                                removedCount, 
+                                totalFound, 
+                                targetClass, 
+                                (specificTargetModel and " (model: " .. specificTargetModel .. ")" or "")
+                            ))
+                        end
+
+                        print(msg)
+                        if IsValid(ply) then
+                            ply:ChatPrint(msg)
+                            if removedCount > 0 then
+                                ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")")
+                            else
+                                ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")")
+                            end
+                        end
+                    end
+                end)
+            else
+                if IsValid(npc) then
+                    npc:Remove()
+                end
+                pendingRemovals = pendingRemovals - 1
+                removedCount = removedCount + 1
+                
+                if pendingRemovals == 0 then
+                    local msg = GetColoredChatMsg("\x05", string.format("✅ Killed %d/%d %s%s", 
+                        removedCount, 
+                        totalFound, 
+                        targetClass, 
+                        (specificTargetModel and " (model: " .. specificTargetModel .. ")" or "")
+                    ))
+                    print(msg)
+                    if IsValid(ply) then
+                        ply:ChatPrint(msg)
+                        ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")")
+                    end
+                end
+            end
+        end
+    end
 
     -- Console command for npcreplace
     concommand.Add("npcreplace", function(ply, cmd, args)
@@ -330,6 +462,53 @@ if SERVER then
         end
     end)
 
+    -- Console command for npcclasskill
+    concommand.Add("npcclasskill", function(ply, cmd, args)
+        if #args < 1 then
+            ply:ChatPrint(GetColoredChatMsg("\x07", "❗ Usage: npcclasskill <target_class> [target_model (optional)]"))
+            ply:ChatPrint(GetColoredChatMsg("\x07", "💡 Example 1: npcclasskill npc_zombie"))
+            ply:ChatPrint(GetColoredChatMsg("\x07", "💡 Example 2: npcclasskill npc_combine_s models/combine_soldier.mdl"))
+            ply:ChatPrint(GetColoredChatMsg("\x07", "⛔ Note: Restricted classes cannot be killed"))
+            return
+        end
+        
+        local targetClass = args[1]
+        local targetModel = (#args >= 2) and args[2] or nil
+        
+        -- Validate if second argument is a model path
+        if targetModel and not IsModelPath(targetModel) then
+            targetModel = nil
+        end
+        
+        RemoveNPCs(targetClass, targetModel, ply)
+    end)
+
+    -- Chat command for npcclasskill
+    hook.Add("PlayerSay", "NPCClassKillChatCommand", function(ply, text)
+        local lowerText = string.lower(text)
+        if lowerText:sub(1, 13) == "!npcclasskill " then
+            local parts = string.Explode(" ", text:sub(14))
+            
+            if #parts < 1 then
+                ply:ChatPrint(GetColoredChatMsg("\x07", "❗ Usage: !npcclasskill <target_class> [target_model (optional)]"))
+                ply:ChatPrint(GetColoredChatMsg("\x07", "💡 Example 1: !npcclasskill npc_zombie"))
+                ply:ChatPrint(GetColoredChatMsg("\x07", "💡 Example 2: !npcclasskill npc_combine_s models/combine_soldier.mdl"))
+                ply:ChatPrint(GetColoredChatMsg("\x07", "⛔ Note: Restricted classes cannot be killed"))
+                return ""
+            end
+            
+            local targetClass = parts[1]
+            local targetModel = (#parts >= 2) and parts[2] or nil
+            
+            -- Validate if second argument is a model path
+            if targetModel and not IsModelPath(targetModel) then
+                targetModel = nil
+            end
+            
+            RemoveNPCs(targetClass, targetModel, ply)
+            return ""
+        end
+    end)
 
     ----------------------------------------------------------------------
     -- NPC Check functionality
@@ -375,7 +554,6 @@ if SERVER then
         -- Prepare messages for console (detailed breakdown)
         local consoleMessages = {}
         table.insert(consoleMessages, "📊 Current NPC Breakdown (excluding restricted classes) - " .. totalNPCs .. " total:")
-
         for class, models in sortedPairs(npcModelCounts) do -- sortedPairs for consistent output
             table.insert(consoleMessages, "  " .. class .. " (" .. npcCounts[class] .. " total):")
             for model, count in sortedPairs(models) do
@@ -427,7 +605,7 @@ if SERVER then
         local lowerText = string.lower(text)
         if lowerText == "!npccheck" then
             CheckNPCs(ply)
-            return "" -- Consume the chat command
+            return "" 
         end
     end)
 end
