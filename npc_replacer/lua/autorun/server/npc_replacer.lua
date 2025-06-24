@@ -1,7 +1,15 @@
+-- NPC Replacer Addon (Final Working Version)
+-- Save as: addons/npc_replacer/lua/autorun/server/npc_replacer.lua
+
 if SERVER then
     -- Define a table of restricted NPC classes
     local RESTRICTED_NPC_CLASSES = {
         ["npc_enemyfinder"] = true, -- Prevent this class from being targeted or spawned
+    }
+    
+    -- Define a table of classes that can be targets but not replacements
+    local RESTRICTED_REPLACEMENT_CLASSES = {
+        ["scripted_target"] = true, -- Can be target but not replacement
     }
 
     -- Helper function to get colored chat messages
@@ -20,6 +28,14 @@ if SERVER then
         end
         if RESTRICTED_NPC_CLASSES[string.lower(newClass)] then
             local msg = GetColoredChatMsg("\x04", "❌ Error: Cannot spawn '" .. newClass .. "'. This NPC class is restricted.")
+            print(msg)
+            if IsValid(ply) then ply:ChatPrint(msg) ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
+            return
+        end
+        
+        -- NEW: Check for replacement-restricted classes
+        if RESTRICTED_REPLACEMENT_CLASSES[string.lower(newClass)] then
+            local msg = GetColoredChatMsg("\x04", "❌ Error: Cannot spawn '" .. newClass .. "'. This NPC class is restricted for replacement.")
             print(msg)
             if IsValid(ply) then ply:ChatPrint(msg) ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
             return
@@ -90,11 +106,8 @@ if SERVER then
         local npcsToReplace = {}
         for _, npc in ipairs(ents.FindByClass(targetClass)) do
             if IsValid(npc) then
-                local npcModel = npc:GetModel()
-                if type(npcModel) ~= "string" or npcModel == "" then
-                    print("Skipping invalid NPC model for " .. targetClass .. ": " .. tostring(npcModel))
-                    continue -- Skip this NPC if its model is not a valid string
-                end
+                -- Get model as string or default to empty string
+                local npcModel = tostring(npc:GetModel() or "")
                 npcModel = string.lower(npcModel)
                 local modelMatches = false
 
@@ -432,6 +445,7 @@ if SERVER then
             ply:ChatPrint(GetColoredChatMsg("\x07", "💡 Example 4: npcreplace npc_zombie npc_antlion weapon_shotgun"))
             ply:ChatPrint(GetColoredChatMsg("\x07", "💡 For custom models, use the FULL model path, e.g., models/mymod/mymodel.mdl"))
             ply:ChatPrint(GetColoredChatMsg("\x07", "⛔ Note: npc_enemyfinder is a restricted class and cannot be used."))
+            ply:ChatPrint(GetColoredChatMsg("\x07", "⛔ Note: scripted_target cannot be used as a replacement NPC."))
             return
         end
 
@@ -454,6 +468,7 @@ if SERVER then
                 ply:ChatPrint(GetColoredChatMsg("\x07", "💡 Example 4: !npcreplace npc_zombie npc_antlion weapon_shotgun"))
                 ply:ChatPrint(GetColoredChatMsg("\x07", "💡 For custom models, use the FULL model path, e.g., models/mymod/mymodel.mdl"))
                 ply:ChatPrint(GetColoredChatMsg("\x07", "⛔ Note: npc_enemyfinder is a restricted class and cannot be used."))
+                ply:ChatPrint(GetColoredChatMsg("\x07", "⛔ Note: scripted_target cannot be used as a replacement NPC."))
                 return ""
             end
             
@@ -605,7 +620,7 @@ if SERVER then
         local lowerText = string.lower(text)
         if lowerText == "!npccheck" then
             CheckNPCs(ply)
-            return "" 
+            return "" -- Consume the chat command
         end
     end)
 end
