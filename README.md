@@ -12,11 +12,17 @@ This replaces the specified NPC class with the NPC you specify. Has options to s
 Don't know what NPC classes or model an NPC is using? See the npccheck command below!
 
 ❗ Usage: npcreplace <target_class> [target_model (optional)] <new_class> [new_model (optional)] [spawn_weapon (optional, 'none' for no weapon)] [health (optional)]
+
 💡 Example 1: npcreplace npc_combine_s npc_metropolice
+
 💡 Example 2: npcreplace npc_combine_s models/combine_soldier.mdl npc_metropolice models/combine_elite.mdl weapon_ar2
+
 💡 Example 3: npcreplace npc_citizen models/humans/group01/male_01.mdl npc_citizen models/humans/group01/female_01.mdl weapon_smg1 500
+
 💡 Example 4: npcreplace npc_zombie npc_antlion 1000
+
 💡 Example 5: npcreplace npc_combine_s npc_metropolice none 50
+
 ❗ For custom models, use the FULL model path, e.g., models/mymod/mymodel.mdl
 
 Console: npccheck | Chat: !npccheck
