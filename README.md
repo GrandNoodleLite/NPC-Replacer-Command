@@ -34,7 +34,7 @@ Current NPC Breakdown (excluding restricted classes) - 23 total:
 
   npc_alyx (1 total):
   
-    - models/alyx.mdl: 1
+ - models/alyx.mdl: 1
     
   npc_citizen (7 total):
   
