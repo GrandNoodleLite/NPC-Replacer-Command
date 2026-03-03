@@ -31,22 +31,39 @@ This will paste a list of how many NPCs of each class are currently spawned and 
 💡Example output in console when npccheck is used:
 
 Current NPC Breakdown (excluding restricted classes) - 23 total:
+
   npc_alyx (1 total):
+  
     - models/alyx.mdl: 1
+    
   npc_citizen (7 total):
+  
     - models/humans/group01/female_06.mdl: 1
+    
     - models/humans/group01/male_05.mdl: 3
+    
     - models/humans/group01/male_08.mdl: 2
+    
     - models/humans/group03m/male_06.mdl: 1
+    
   npc_combine_s (9 total):
+  
     - models/combine_soldier.mdl: 4
+    
     - models/combine_soldier_prisonguard.mdl: 2
+    
     - models/combine_super_soldier.mdl: 3
+    
   npc_gman (1 total):
+  
     - models/gman.mdl: 1
+    
   npc_metropolice (5 total):
+  
     - models/police.mdl: 5
+    
 Current NPC Summary (excluding restricted classes) - 23 total:
+
 npc_alyx: 1, npc_citizen: 7, npc_combine_s: 9, npc_gman: 1, npc_metropolice: 5
 
 FAQ:
