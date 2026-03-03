@@ -11,13 +11,13 @@ This replaces the specified NPC class with the NPC you specify. Has options to s
 
 Don't know what NPC classes or model an NPC is using? See the npccheck command below!
 
-Usage: npcreplace <target_class> [target_model (optional)] <new_class> [new_model (optional)] [spawn_weapon (optional)]
-
-💡 Example 1: npcreplace npc_citizen npc_zombie
-💡 Example 2: npcreplace npc_combine_s npc_metropolice weapon_stunstick
-💡 Example 3: npcreplace npc_citizen models/player/group01/female_01.mdl npc_zombie
-💡 Example 4: npcreplace npc_citizen models/player/group01/male_07.mdl npc_combine_s models/combine_super_soldier.mdl weapon_ar2
-❗ Use the FULL model path, e.g., models/mymod/mymodel.mdl
+❗ Usage: npcreplace <target_class> [target_model (optional)] <new_class> [new_model (optional)] [spawn_weapon (optional, 'none' for no weapon)] [health (optional)]
+💡 Example 1: npcreplace npc_combine_s npc_metropolice
+💡 Example 2: npcreplace npc_combine_s models/combine_soldier.mdl npc_metropolice models/combine_elite.mdl weapon_ar2
+💡 Example 3: npcreplace npc_citizen models/humans/group01/male_01.mdl npc_citizen models/humans/group01/female_01.mdl weapon_smg1 500
+💡 Example 4: npcreplace npc_zombie npc_antlion 1000
+💡 Example 5: npcreplace npc_combine_s npc_metropolice none 50
+❗ For custom models, use the FULL model path, e.g., models/mymod/mymodel.mdl
 
 Console: npccheck | Chat: !npccheck
 This will paste a list of how many NPCs of each class are currently spawned and how many of each class is using a specific model. If your lazy like me it also shows a shorter version in yellow text that just counts the classes. npc_citizens and npc_combine_s classes can have a lot of models which can create a lot of lines in the console, so you just want the class amount, you can ignore those lines and read the yellow summary at the bottom.
@@ -60,7 +60,7 @@ I just turned an NPC into an entity!
 Ya, I found that out too just before posting this. I was able to turn NPCs into helicopter bombs to effectively delete them without knowing where they were. Bonus feature I guess? I haven't tested this, so prepare for unforeseen consequences...
 
 Which AIs did you use to make these commands and how much work did you really do on this tool?
-Deepseek. Mainly because it has a lot less limits for free users and is comperable to ChatGPT. I spent time troubleshooting lua errors, thinking of more features to tell the AI to add, but I'm not going to act like I slaved away at these commands. It is just 2 commands after all.
+Deepseek, Grok, and Claude depending on usage limits. I spent time troubleshooting lua errors, thinking of more features to tell the AI to add, but I'm not going to act like I slaved away at these commands. It is just a few commands after all.
 
 Can you update/add something to this tool for me?
 No. I wasn't even planning on releasing this initially. I'm only publishing it now because I spent WAY too long on it and since I spent all this time on it I might as well post it and hope someone else finds it cool/useful too. ¯\_(ツ)_/¯
