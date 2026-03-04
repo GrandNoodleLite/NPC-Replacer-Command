@@ -3,69 +3,69 @@
 if SERVER then
     -- Define a table of restricted NPC classes
     local RESTRICTED_NPC_CLASSES = {
-        ["npc_enemyfinder"] = true, -- Prevent this class from being targeted or spawned
+        ["npc_enemyfinder"] = true,
     }
     
     -- Define a table of classes that can be targets but not replacements
     local RESTRICTED_REPLACEMENT_CLASSES = {
-        ["scripted_target"] = true, -- Can be target but not replacement
+        ["scripted_target"] = true,
     }
 	
 local NPC_CLASSES = {
     "npc_citizen",
     "npc_metropolice",
     "npc_combine_s",
-	"npc_turret_floor",
-	"npc_cscanner",
-	"npc_fisherman",
-	"npc_clawscanner",
-	"npc_manhack",
-	"npc_rollermine",
-	"npc_hunter",
-	"npc_monk",
-	"npc_alyx",
-	"npc_barney",
-	"npc_breen",
-	"npc_dog",
-	"npc_eli",
-	"npc_gman",
-	"npc_kleiner",
-	"npc_mossman",
-	"npc_magnusson",
-	"npc_vortigaunt",
-	"npc_antlion",
-	"npc_antlion_grub",
-	"npc_antlion_worker",
-	"npc_antlionguard",
-	"npc_fastzombie",
-	"npc_fastzombie_torso",
-	"npc_headcrab",
-	"npc_headcrab_black",
-	"npc_headcrab_fast",
-	"npc_poisonzombie",
-	"npc_zombie",
-	"npc_zombie_torso",
-	"npc_zombine",
-	"npc_stalker",
+    "npc_turret_floor",
+    "npc_cscanner",
+    "npc_fisherman",
+    "npc_clawscanner",
+    "npc_manhack",
+    "npc_rollermine",
+    "npc_hunter",
+    "npc_monk",
+    "npc_alyx",
+    "npc_barney",
+    "npc_breen",
+    "npc_dog",
+    "npc_eli",
+    "npc_gman",
+    "npc_kleiner",
+    "npc_mossman",
+    "npc_magnusson",
+    "npc_vortigaunt",
+    "npc_antlion",
+    "npc_antlion_grub",
+    "npc_antlion_worker",
+    "npc_antlionguard",
+    "npc_fastzombie",
+    "npc_fastzombie_torso",
+    "npc_headcrab",
+    "npc_headcrab_black",
+    "npc_headcrab_fast",
+    "npc_poisonzombie",
+    "npc_zombie",
+    "npc_zombie_torso",
+    "npc_zombine",
+    "npc_stalker",
 }
 
 local MODELS = {
     "models/humans/group01/male_01.mdl",
     "models/humans/group01/female_01.mdl",
-	"models/police.mdl",
-	"models/combine_soldier.mdl",
-	"models/combine_soldier_prisonguard.mdl",
+    "models/police.mdl",
+    "models/combine_soldier.mdl",
+    "models/combine_soldier_prisonguard.mdl",
     "models/combine_super_soldier.mdl",
-	"models/odessa.mdl",
-	"models/monk.mdl",
-	"models/breen.mdl",
-	"models/mossman.mdl",
-	"models/magnusson.mdl",
-	"models/kleiner.mdl",
-	"models/alyx.mdl",
-	"models/barney.mdl",
-	"models/eli.mdl",
-	"models/lostcoast/fisherman/fisherman.mdl",
+    "models/odessa.mdl",
+    "models/monk.mdl",
+    "models/breen.mdl",
+    "models/mossman.mdl",
+    "models/magnusson.mdl",
+    "models/kleiner.mdl",
+    "models/alyx.mdl",
+    "models/barney.mdl",
+    "models/eli.mdl",
+    "models/lostcoast/fisherman/fisherman.mdl",
     "models/humans/group03/female_01.mdl",
     "models/humans/group03/female_02.mdl",
     "models/humans/group03/female_03.mdl",
@@ -80,35 +80,69 @@ local MODELS = {
     "models/humans/group03/male_07.mdl",
     "models/humans/group03/male_08.mdl",
     "models/humans/group03/male_09.mdl",
-	"models/humans/group03m/female_01.mdl",
-	"models/humans/group03m/female_02.mdl",
-	"models/humans/group03m/female_03.mdl",
-	"models/humans/group03m/female_04.mdl",
-	"models/humans/group03m/female_06.mdl",
-	"models/humans/group03m/male_01.mdl",
-	"models/humans/group03m/male_02.mdl",
-	"models/humans/group03m/male_03.mdl",
-	"models/humans/group03m/male_04.mdl",
-	"models/humans/group03m/male_05.mdl",
-	"models/humans/group03m/male_06.mdl",
-	"models/humans/group03m/male_07.mdl",
-	"models/humans/group03m/male_08.mdl",
-	"models/humans/group03m/male_09.mdl",
+    "models/humans/group03m/female_01.mdl",
+    "models/humans/group03m/female_02.mdl",
+    "models/humans/group03m/female_03.mdl",
+    "models/humans/group03m/female_04.mdl",
+    "models/humans/group03m/female_06.mdl",
+    "models/humans/group03m/male_01.mdl",
+    "models/humans/group03m/male_02.mdl",
+    "models/humans/group03m/male_03.mdl",
+    "models/humans/group03m/male_04.mdl",
+    "models/humans/group03m/male_05.mdl",
+    "models/humans/group03m/male_06.mdl",
+    "models/humans/group03m/male_07.mdl",
+    "models/humans/group03m/male_08.mdl",
+    "models/humans/group03m/male_09.mdl",
 }
 
 local WEAPONS = {
-	"weapon_357",
-	"weapon_ar2",
+    "weapon_357",
+    "weapon_ar2",
     "weapon_smg1",
     "weapon_shotgun",
     "weapon_pistol",
-	"weapon_crossbow",
-	"weapon_crowbar",
-	"weapon_stunstick",
-	"weapon_rpg",
-	"weapon_annabelle",
-	"none",
+    "weapon_crossbow",
+    "weapon_crowbar",
+    "weapon_stunstick",
+    "weapon_rpg",
+    "weapon_annabelle",
+    "none",
 }
+
+    ----------------------------------------------------------------------
+    -- Dissolve Effect Configuration
+    ----------------------------------------------------------------------
+    -- Maps friendly effect names to Source engine dissolvetype values.
+    -- "none" is special: skips the dissolve effect entirely.
+    local DISSOLVE_EFFECTS = {
+        ["energy"]  = 0,
+        ["heavy"]   = 1,
+        ["light"]   = 2,
+        ["core"]    = 3,
+        ["none"]    = -1,
+    }
+
+    -- Ordered list of valid effect names for autocomplete and usage messages
+    local DISSOLVE_EFFECT_NAMES = { "energy", "heavy", "light", "core", "none" }
+
+    -- Persistent ConVar: FCVAR_ARCHIVE ensures the value is saved to config
+    -- and restored across game restarts, map changes, etc.
+    -- FCVAR_HIDDEN keeps this ConVar out of console autocomplete so users
+    -- only see the npcremovaleffect command (which wraps this ConVar).
+    -- Default is "heavy" to match the original behavior of npcreplace.
+    CreateConVar("npcreplacer_effect", "heavy", bit.bor(FCVAR_ARCHIVE, 0x10),
+        "Dissolve effect for NPC replacer/kill commands. Valid: energy, heavy, light, core, none")
+
+    -- Helper to get the current dissolve type number from the ConVar.
+    -- Returns the engine dissolvetype integer, or -1 for "none".
+    local function GetDissolveType()
+        local effectName = string.lower(GetConVar("npcreplacer_effect"):GetString())
+        if DISSOLVE_EFFECTS[effectName] ~= nil then
+            return DISSOLVE_EFFECTS[effectName]
+        end
+        return 1 -- fallback to heavy if stored value is invalid
+    end
 
     -- Helper function to check if a string looks like a model path
     local function IsModelPath(str)
@@ -235,6 +269,25 @@ local function NPCClassKillAutocomplete(cmd, stringargs)
     return suggestions
 end
 
+    ----------------------------------------------------------------------
+    -- Autocomplete for npcremovaleffect command
+    ----------------------------------------------------------------------
+    local function NPCRemovalEffectAutocomplete(cmd, stringargs)
+        stringargs = string.Trim(stringargs)
+        if stringargs == "" then return {} end
+        local args = string.Split(stringargs, " ")
+        -- Only autocomplete the first argument
+        if #args > 1 then return {} end
+        local partial = string.lower(args[1])
+        local suggestions = {}
+        for _, name in ipairs(DISSOLVE_EFFECT_NAMES) do
+            if string.StartWith(name, partial) then
+                table.insert(suggestions, cmd .. " " .. name)
+            end
+        end
+        return suggestions
+    end
+
     -- Color definitions for chat messages (used with chat.AddText via SendLua)
     local CHAT_COLORS = {
         ["\x03"] = "Color(100,150,255)",  -- Info / NPC entries (blue)
@@ -254,7 +307,6 @@ end
     end
 
     -- Send a colored message ONLY to the chat HUD (not the console).
-    -- Uses chat.AddText via SendLua so the message does not echo in console.
     local function ChatOnlyPrint(ply, colorCode, message)
         if not IsValid(ply) then return end
         local colorStr = CHAT_COLORS[colorCode] or "Color(255,255,255)"
@@ -264,7 +316,6 @@ end
 
     -- Modified function signature to include spawnWeapon and spawnHealth
     local function ReplaceNPCs(targetClass, targetModel, newClass, newModel, spawnWeapon, spawnHealth, ply)
-        -- NEW: Check for restricted classes
         if RESTRICTED_NPC_CLASSES[string.lower(targetClass)] then
             ChatOnlyPrint(ply, "\x04", "❌ Error: Cannot target '" .. targetClass .. "'. This NPC class is restricted.")
             if IsValid(ply) then ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
@@ -275,35 +326,31 @@ end
             if IsValid(ply) then ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
             return
         end
-        
-        -- Check for replacement-restricted classes
         if RESTRICTED_REPLACEMENT_CLASSES[string.lower(newClass)] then
             ChatOnlyPrint(ply, "\x04", "❌ Error: Cannot spawn '" .. newClass .. "'. This NPC class is restricted for replacement.")
             if IsValid(ply) then ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
             return
         end
 
-        local dissolveType = 1 -- 0 = Energy, 1 = Heavy, 2 = Light
+        local dissolveType = GetDissolveType()
         local replacedCount = 0
         local totalFound = 0
-        local pendingReplacements = 0 -- Track how many replacements are still pending
+        local pendingReplacements = 0
 
         local specificTargetModel = nil
         if targetModel and targetModel ~= "" then
-            -- Ensure targetModel is lowercased for consistent comparison
             specificTargetModel = string.lower(targetModel)
             print("Attempting to target model: " .. specificTargetModel)
         end
 
         local specificNewModel = nil
         if newModel and newModel ~= "" then
-            -- Ensure newModel is lowercased
             specificNewModel = string.lower(newModel)
             print("New NPCs will use model: " .. specificNewModel)
         end
 
         local specificSpawnWeapon = nil
-        local noWeapon = false -- Flag for explicitly spawning without weapons
+        local noWeapon = false
         if spawnWeapon and spawnWeapon ~= "" then
             if string.lower(spawnWeapon) == "none" then
                 noWeapon = true
@@ -314,22 +361,15 @@ end
             end
         end
 
-        -- Look up default NPC configuration from the spawn list
-        -- The sandbox spawn menu uses list.Get("NPC") to find KeyValues and Weapons
-        -- for each registered NPC class. We search by matching the Class field, not
-        -- the table key, because keys can be display names (e.g. "Medic") rather than
-        -- entity class names (e.g. "npc_citizen").
         local defaultWeapons = nil
         local npcListKeyValues = nil
         local npcList = list.Get("NPC")
         local npcListData = nil
         if npcList then
-            -- First try direct key lookup (works for most NPCs where key == class)
             local directEntry = npcList[newClass]
             if directEntry and (not directEntry.Class or directEntry.Class == newClass) then
                 npcListData = directEntry
             end
-            -- If direct lookup failed, search all entries for matching Class field
             if not npcListData then
                 for _, entry in pairs(npcList) do
                     if entry.Class == newClass then
@@ -344,7 +384,6 @@ end
                 npcListKeyValues = npcListData.KeyValues
             end
             if not noWeapon and npcListData.Weapons then
-                -- Filter out empty strings from the weapons table
                 local validWeapons = {}
                 for _, w in ipairs(npcListData.Weapons) do
                     if w and w ~= "" then
@@ -369,7 +408,6 @@ end
         ----------------------------------------------------------------------
         local canSpawnNewNPC = true
 
-        -- Validate model path first if one was specified (no entity creation needed)
         if specificNewModel then
             if not util.IsValidModel(specificNewModel) then
                 canSpawnNewNPC = false
@@ -377,20 +415,11 @@ end
             end
         end
 
-        -- Validate the NPC class exists
         if canSpawnNewNPC then
             local classExists = false
-
-            -- Check Lua scripted entities first (covers VJ-Base, ZBase, DrGBase, etc.)
-            -- This avoids creating a dummy entity that would trigger OnRemove hooks
-            -- on NPC bases whose cleanup code expects a fully initialized NPC
             if scripted_ents.GetStored(newClass) then
                 classExists = true
             end
-
-            -- Check engine-registered NPC spawn list (covers npc_combine_s, npc_zombie, etc.)
-            -- Only accept if the entry's Class field matches newClass, because keys can be
-            -- display names (e.g. "Medic") whose actual entity class is different (npc_citizen)
             if not classExists then
                 local npcList = list.Get("NPC")
                 if npcList then
@@ -398,7 +427,6 @@ end
                     if directEntry and (not directEntry.Class or directEntry.Class == newClass) then
                         classExists = true
                     end
-                    -- Also check if any entry has this as its Class field
                     if not classExists then
                         for _, entry in pairs(npcList) do
                             if entry.Class == newClass then
@@ -409,17 +437,12 @@ end
                     end
                 end
             end
-
-            -- Check the spawnable entities list (covers non-NPC entities)
             if not classExists then
                 local entList = list.Get("SpawnableEntities")
                 if entList and entList[newClass] then
                     classExists = true
                 end
             end
-
-            -- Final fallback: try creating the entity directly
-            -- pcall protects against OnRemove errors from custom NPC bases
             if not classExists then
                 local testEnt = ents.Create(newClass)
                 if IsValid(testEnt) then
@@ -427,7 +450,6 @@ end
                     pcall(function() testEnt:Remove() end)
                 end
             end
-
             if not classExists then
                 canSpawnNewNPC = false
                 if IsValid(ply) then ChatOnlyPrint(ply, "\x04", "❌ Error: New NPC class '" .. newClass .. "' could not be found. Check class name.") end
@@ -447,7 +469,6 @@ end
         local npcsToReplace = {}
         for _, npc in ipairs(ents.FindByClass(targetClass)) do
             if IsValid(npc) then
-                -- Get model as string or default to empty string
                 local npcModel = tostring(npc:GetModel() or "")
                 npcModel = string.lower(npcModel)
                 local modelMatches = false
@@ -475,212 +496,166 @@ end
             return
         end
 
-        pendingReplacements = totalFound -- Initialize with the total number of NPCs to process
+        pendingReplacements = totalFound
+
+        -- Helper: spawns the replacement NPC and handles model, weapon, health, alignment
+        local function SpawnReplacementNPC(npcPos, npcAng, oldBottomZ)
+            local newNPC = ents.Create(newClass)
+            if not IsValid(newNPC) then return false end
+
+            newNPC:SetPos(npcPos)
+            newNPC:SetAngles(npcAng)
+
+            if npcListKeyValues then
+                for k, v in pairs(npcListKeyValues) do
+                    if k ~= "additionalequipment" then
+                        newNPC:SetKeyValue(k, v)
+                    end
+                end
+            end
+
+            if specificSpawnWeapon then
+                newNPC:SetKeyValue("additionalequipment", specificSpawnWeapon)
+            elseif not noWeapon then
+                if defaultWeapons then
+                    local randomWeapon = defaultWeapons[math.random(#defaultWeapons)]
+                    newNPC:SetKeyValue("additionalequipment", randomWeapon)
+                elseif npcListKeyValues and npcListKeyValues["additionalequipment"] then
+                    newNPC:SetKeyValue("additionalequipment", npcListKeyValues["additionalequipment"])
+                end
+            end
+
+            newNPC:Spawn()
+            newNPC:Activate()
+            newNPC:SetCreator(ply)
+
+            if specificNewModel then
+                newNPC:SetModel(specificNewModel)
+            end
+
+            local newMinsZ = newNPC:OBBMins().z
+            newNPC:SetPos(Vector(npcPos.x, npcPos.y, oldBottomZ - newMinsZ))
+
+            if specificSpawnHealth and IsValid(newNPC) then
+                newNPC:SetMaxHealth(specificSpawnHealth)
+                newNPC:SetHealth(specificSpawnHealth)
+                newNPC.StartHealth = specificSpawnHealth
+                if newNPC.SetZBaseHealth then
+                    pcall(function() newNPC:SetZBaseHealth(specificSpawnHealth) end)
+                end
+                local capturedNPC = newNPC
+                local capturedHealth = specificSpawnHealth
+                timer.Simple(0.3, function()
+                    if IsValid(capturedNPC) then
+                        capturedNPC:SetMaxHealth(capturedHealth)
+                        capturedNPC:SetHealth(capturedHealth)
+                        capturedNPC.StartHealth = capturedHealth
+                    end
+                end)
+            end
+
+            return true
+        end
+
+        -- Helper: sends the final summary chat message and plays sound
+        local function SendReplaceSummary()
+            local weaponInfo = ""
+            if specificSpawnWeapon then
+                weaponInfo = " with " .. specificSpawnWeapon
+            elseif noWeapon then
+                weaponInfo = " with no weapon"
+            elseif defaultWeapons then
+                weaponInfo = " with default weapons"
+            end
+            local healthInfo = specificSpawnHealth and (" [HP: " .. specificSpawnHealth .. "]") or ""
+            if replacedCount == 0 then
+                ChatOnlyPrint(ply, "\x07", "⚠️ Failed to replace " .. targetClass .. (specificTargetModel and " with model " .. specificTargetModel or "") .. "!")
+            else
+                ChatOnlyPrint(ply, "\x05", string.format("✅ Replaced %d/%d %s%s with %s%s%s%s", 
+                    replacedCount, 
+                    totalFound, 
+                    targetClass, 
+                    (specificTargetModel and " (model: " .. specificTargetModel .. ")" or ""), 
+                    newClass,
+                    (specificNewModel and " (model: " .. specificNewModel .. ")" or ""),
+                    weaponInfo,
+                    healthInfo
+                ))
+            end
+
+            if IsValid(ply) then
+                if replacedCount > 0 then
+                    ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")")
+                else
+                    ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")")
+                end
+            end
+        end
 
         -- Replacement logic
         for _, npc in ipairs(npcsToReplace) do
-            local dissolverName = "npc_replacer_diss_" .. CurTime() .. "_" .. math.random(10000)
-            
-            local npcOriginalName = npc:GetName()
-            if npcOriginalName == "" then
-                npc:SetName("temp_dissolve_target_" .. CurTime() .. "_" .. math.random(10000))
-            end
-
             local npcPos = npc:GetPos()
-            -- Only preserve the yaw (horizontal facing direction) from the original NPC.
-            -- NPCs like rollermines, manhacks, and scanners can tumble freely, so their
-            -- pitch and roll may be arbitrary. Zeroing those ensures the replacement
-            -- always spawns upright.
             local npcAng = Angle(0, npc:GetAngles().y, 0)
-            -- Get the actual world-space bottom of the original NPC using WorldSpaceAABB.
-            -- This returns the axis-aligned bounding box in world coordinates, so it
-            -- gives us the correct bottom Z regardless of the entity's rotation or
-            -- origin convention (e.g. rollermines have origin at center, humanoids at feet).
             local oldWorldMins = select(1, npc:WorldSpaceAABB())
             local oldBottomZ = oldWorldMins.z
 
-            local dissolver = ents.Create("env_entity_dissolver")
-            if IsValid(dissolver) then
-                dissolver:SetName(dissolverName)
-                dissolver:SetKeyValue("dissolvetype", tostring(dissolveType))
-                dissolver:Spawn()
-                dissolver:Activate()
-                
-                dissolver:Fire("Dissolve", npc:GetName(), 0)
-                
-                timer.Simple(0.2, function()
-                    if IsValid(npc) then
-                        npc:Remove()
-                    end
-                    
-                    local newNPC = ents.Create(newClass)
-                    if IsValid(newNPC) then
-                        newNPC:SetPos(npcPos)
-                        newNPC:SetAngles(npcAng)
-
-                        -- Apply registered KeyValues from NPC spawn list before Spawn()
-                        -- This mirrors sandbox spawn menu behavior and handles default NPC
-                        -- configuration (citizentype, spawnflags, etc.)
-                        if npcListKeyValues then
-                            for k, v in pairs(npcListKeyValues) do
-                                -- Skip additionalequipment here; weapon is handled separately below
-                                if k ~= "additionalequipment" then
-                                    newNPC:SetKeyValue(k, v)
-                                end
-                            end
-                        end
-
-                        -- Weapon assignment via additionalequipment KeyValue (before Spawn)
-                        -- This is how GMod's spawn menu equips NPCs - the engine processes
-                        -- this KeyValue during Spawn() for proper weapon initialization
-                        if specificSpawnWeapon then
-                            -- Player specified an explicit weapon
-                            newNPC:SetKeyValue("additionalequipment", specificSpawnWeapon)
-                        elseif not noWeapon then
-                            if defaultWeapons then
-                                -- Pick a random weapon from the NPC's registered weapon list
-                                -- (same behavior as the sandbox spawn menu)
-                                local randomWeapon = defaultWeapons[math.random(#defaultWeapons)]
-                                newNPC:SetKeyValue("additionalequipment", randomWeapon)
-                            elseif npcListKeyValues and npcListKeyValues["additionalequipment"] then
-                                -- Fall back to the KeyValues default if no Weapons list exists
-                                newNPC:SetKeyValue("additionalequipment", npcListKeyValues["additionalequipment"])
-                            end
-                        end
-                        -- If noWeapon is true: skip all weapon assignment, NPC spawns unarmed
-
-                        newNPC:Spawn()
-                        newNPC:Activate()
-                        newNPC:SetCreator(ply)
-
-                        -- Apply custom model AFTER Spawn()/Activate() so it overrides any
-                        -- model that the engine sets during spawning. This is necessary for
-                        -- NPCs like npc_citizen whose Spawn() sets the model based on internal
-                        -- citizentype logic, which would otherwise override our SetModel call.
-                        if specificNewModel then
-                            newNPC:SetModel(specificNewModel)
-                        end
-
-                        -- Align the bottom of the replacement NPC to the same height as
-                        -- the bottom of the original. oldBottomZ is the world-space bottom
-                        -- of the original (via WorldSpaceAABB, correct regardless of rotation).
-                        -- The new NPC is spawned upright, so OBBMins().z reliably tells us
-                        -- how far below its origin its bottom extends. We set the origin so
-                        -- that origin + OBBMins().z == oldBottomZ, i.e.:
-                        --   origin = oldBottomZ - OBBMins().z
-                        -- This works in all directions: humanoid-to-rollermine, rollermine-to-
-                        -- humanoid, same-type, hovering NPCs, thin platforms, etc.
-                        local newMinsZ = newNPC:OBBMins().z
-                        newNPC:SetPos(Vector(npcPos.x, npcPos.y, oldBottomZ - newMinsZ))
-
-                        -- Apply custom health to the replacement NPC if specified
-                        if specificSpawnHealth and IsValid(newNPC) then
-                            -- Standard GMod method: SetMaxHealth first, then SetHealth
-                            newNPC:SetMaxHealth(specificSpawnHealth)
-                            newNPC:SetHealth(specificSpawnHealth)
-
-                            -- VJ-Base compatibility: set StartHealth so VJ-Base internal logic
-                            -- recognizes the correct health value (used for regen, damage scaling, etc.)
-                            newNPC.StartHealth = specificSpawnHealth
-
-                            -- ZBase compatibility: set ZBase's internal health tracking if present
-                            if newNPC.SetZBaseHealth then
-                                pcall(function() newNPC:SetZBaseHealth(specificSpawnHealth) end)
-                            end
-
-                            -- Delayed re-application to override any base that sets health
-                            -- during its own deferred initialization (VJ-Base uses a 0.15s timer,
-                            -- ZBase may also defer). We apply at 0.2s to catch both.
-                            local capturedNPC = newNPC
-                            local capturedHealth = specificSpawnHealth
-                            timer.Simple(0.3, function()
-                                if IsValid(capturedNPC) then
-                                    capturedNPC:SetMaxHealth(capturedHealth)
-                                    capturedNPC:SetHealth(capturedHealth)
-                                    capturedNPC.StartHealth = capturedHealth
-                                end
-                            end)
-                        end
-
-                        replacedCount = replacedCount + 1
-                    end
-                    
-                    if IsValid(dissolver) then
-                        dissolver:Remove()
-                    end
-
-                    pendingReplacements = pendingReplacements - 1
-
-                    if pendingReplacements == 0 then
-                        local weaponInfo = ""
-                        if specificSpawnWeapon then
-                            weaponInfo = " with " .. specificSpawnWeapon
-                        elseif noWeapon then
-                            weaponInfo = " with no weapon"
-                        elseif defaultWeapons then
-                            weaponInfo = " with default weapons"
-                        end
-                        local healthInfo = specificSpawnHealth and (" [HP: " .. specificSpawnHealth .. "]") or ""
-                        if replacedCount == 0 then
-                            ChatOnlyPrint(ply, "\x07", "⚠️ Failed to replace " .. targetClass .. (specificTargetModel and " with model " .. specificTargetModel or "") .. "!")
-                        else
-                            ChatOnlyPrint(ply, "\x05", string.format("✅ Replaced %d/%d %s%s with %s%s%s%s", 
-                                replacedCount, 
-                                totalFound, 
-                                targetClass, 
-                                (specificTargetModel and " (model: " .. specificTargetModel .. ")" or ""), 
-                                newClass,
-                                (specificNewModel and " (model: " .. specificNewModel .. ")" or ""),
-                                weaponInfo,
-                                healthInfo
-                            ))
-                        end
-
-                        if IsValid(ply) then
-                            if replacedCount > 0 then
-                                ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")")
-                            else
-                                ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")")
-                            end
-                        end
-                    end
-                end)
-            else
+            if dissolveType == -1 then
+                -- "none" effect: remove immediately with no dissolve visual
                 if IsValid(npc) then
                     npc:Remove()
                 end
+
+                if SpawnReplacementNPC(npcPos, npcAng, oldBottomZ) then
+                    replacedCount = replacedCount + 1
+                end
+
                 pendingReplacements = pendingReplacements - 1
                 if pendingReplacements == 0 then
-                    local weaponInfo = ""
-                    if specificSpawnWeapon then
-                        weaponInfo = " with " .. specificSpawnWeapon
-                    elseif noWeapon then
-                        weaponInfo = " with no weapon"
-                    elseif defaultWeapons then
-                        weaponInfo = " with default weapons"
-                    end
-                    local healthInfo = specificSpawnHealth and (" [HP: " .. specificSpawnHealth .. "]") or ""
-                    if replacedCount == 0 then
-                        ChatOnlyPrint(ply, "\x07", "⚠️ Failed to replace " .. targetClass .. (specificTargetModel and " with model " .. specificTargetModel or "") .. "!")
-                    else
-                        ChatOnlyPrint(ply, "\x05", string.format("✅ Replaced %d/%d %s%s with %s%s%s%s", 
-                            replacedCount, 
-                            totalFound, 
-                            targetClass, 
-                            (specificTargetModel and " (model: " .. specificTargetModel .. ")" or ""), 
-                            newClass,
-                            (specificNewModel and " (model: " .. specificNewModel .. ")" or ""),
-                            weaponInfo,
-                            healthInfo
-                        ))
-                    end
+                    SendReplaceSummary()
+                end
+            else
+                -- Dissolve effect path
+                local dissolverName = "npc_replacer_diss_" .. CurTime() .. "_" .. math.random(10000)
+                
+                local npcOriginalName = npc:GetName()
+                if npcOriginalName == "" then
+                    npc:SetName("temp_dissolve_target_" .. CurTime() .. "_" .. math.random(10000))
+                end
 
-                    if IsValid(ply) then
-                        if replacedCount > 0 then
-                            ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")")
-                        else
-                            ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")")
+                local dissolver = ents.Create("env_entity_dissolver")
+                if IsValid(dissolver) then
+                    dissolver:SetName(dissolverName)
+                    dissolver:SetKeyValue("dissolvetype", tostring(dissolveType))
+                    dissolver:Spawn()
+                    dissolver:Activate()
+                    
+                    dissolver:Fire("Dissolve", npc:GetName(), 0)
+                    
+                    timer.Simple(0.2, function()
+                        if IsValid(npc) then
+                            npc:Remove()
                         end
+                        
+                        if SpawnReplacementNPC(npcPos, npcAng, oldBottomZ) then
+                            replacedCount = replacedCount + 1
+                        end
+                        
+                        if IsValid(dissolver) then
+                            dissolver:Remove()
+                        end
+
+                        pendingReplacements = pendingReplacements - 1
+                        if pendingReplacements == 0 then
+                            SendReplaceSummary()
+                        end
+                    end)
+                else
+                    if IsValid(npc) then
+                        npc:Remove()
+                    end
+                    pendingReplacements = pendingReplacements - 1
+                    if pendingReplacements == 0 then
+                        SendReplaceSummary()
                     end
                 end
             end
@@ -719,18 +694,12 @@ end
             currentArgIndex = currentArgIndex + 1
         end
 
-        -- After newModel, remaining args are [spawn_weapon] [health]
-        -- If next arg is a number, treat it as health (no weapon specified)
-        -- If next arg is NOT a number, treat it as weapon, then check for health after
         if args[currentArgIndex] then
             if tonumber(args[currentArgIndex]) then
-                -- It's a number, so it's health (no weapon)
                 parsed.spawnHealth = tonumber(args[currentArgIndex])
             else
-                -- It's a weapon
                 parsed.spawnWeapon = args[currentArgIndex]
                 currentArgIndex = currentArgIndex + 1
-                -- Check for health after weapon
                 if args[currentArgIndex] and tonumber(args[currentArgIndex]) then
                     parsed.spawnHealth = tonumber(args[currentArgIndex])
                 end
@@ -744,14 +713,13 @@ end
     -- NPC Class Kill functionality
     ----------------------------------------------------------------------
     local function RemoveNPCs(targetClass, targetModel, ply)
-        -- Check for restricted classes
         if RESTRICTED_NPC_CLASSES[string.lower(targetClass)] then
             ChatOnlyPrint(ply, "\x04", "❌ Error: Cannot kill '" .. targetClass .. "'. This NPC class is restricted.")
             if IsValid(ply) then ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
             return
         end
 
-        local dissolveType = 0 -- 0 = Energy
+        local dissolveType = GetDissolveType()
         local removedCount = 0
         local totalFound = 0
         local pendingRemovals = 0
@@ -762,7 +730,6 @@ end
             print("Attempting to target model: " .. specificTargetModel)
         end
 
-        -- Collect NPCs to kill
         local npcsToKill = {}
         for _, npc in ipairs(ents.FindByClass(targetClass)) do
             if IsValid(npc) then
@@ -795,73 +762,84 @@ end
 
         pendingRemovals = totalFound
 
-        -- Kill logic
-        for _, npc in ipairs(npcsToKill) do
-            local dissolverName = "npc_classkill_diss_" .. CurTime() .. "_" .. math.random(10000)
-            
-            local npcOriginalName = npc:GetName()
-            if npcOriginalName == "" then
-                npc:SetName("temp_dissolve_target_" .. CurTime() .. "_" .. math.random(10000))
+        -- Helper: sends the final kill summary and plays sound
+        local function SendKillSummary()
+            if removedCount == 0 then
+                ChatOnlyPrint(ply, "\x07", "⚠️ Failed to kill " .. targetClass .. (specificTargetModel and " with model " .. specificTargetModel or "") .. "!")
+            else
+                ChatOnlyPrint(ply, "\x05", string.format("✅ Killed %d/%d %s%s", 
+                    removedCount, 
+                    totalFound, 
+                    targetClass, 
+                    (specificTargetModel and " (model: " .. specificTargetModel .. ")" or "")
+                ))
             end
 
-            local dissolver = ents.Create("env_entity_dissolver")
-            if IsValid(dissolver) then
-                dissolver:SetName(dissolverName)
-                dissolver:SetKeyValue("dissolvetype", tostring(dissolveType))
-                dissolver:Spawn()
-                dissolver:Activate()
-                
-                dissolver:Fire("Dissolve", npc:GetName(), 0)
-                
-                timer.Simple(0.2, function()
-                    if IsValid(npc) then
-                        npc:Remove()
-                    end
-                    
-                    if IsValid(dissolver) then
-                        dissolver:Remove()
-                    end
+            if IsValid(ply) then
+                if removedCount > 0 then
+                    ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")")
+                else
+                    ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")")
+                end
+            end
+        end
 
-                    removedCount = removedCount + 1
-                    pendingRemovals = pendingRemovals - 1
-
-                    if pendingRemovals == 0 then
-                        if removedCount == 0 then
-                            ChatOnlyPrint(ply, "\x07", "⚠️ Failed to kill " .. targetClass .. (specificTargetModel and " with model " .. specificTargetModel or "") .. "!")
-                        else
-                            ChatOnlyPrint(ply, "\x05", string.format("✅ Killed %d/%d %s%s", 
-                                removedCount, 
-                                totalFound, 
-                                targetClass, 
-                                (specificTargetModel and " (model: " .. specificTargetModel .. ")" or "")
-                            ))
-                        end
-
-                        if IsValid(ply) then
-                            if removedCount > 0 then
-                                ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")")
-                            else
-                                ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")")
-                            end
-                        end
-                    end
-                end)
-            else
+        -- Kill logic
+        for _, npc in ipairs(npcsToKill) do
+            if dissolveType == -1 then
+                -- "none" effect: remove immediately with no dissolve visual
                 if IsValid(npc) then
                     npc:Remove()
                 end
-                pendingRemovals = pendingRemovals - 1
                 removedCount = removedCount + 1
-                
+                pendingRemovals = pendingRemovals - 1
+
                 if pendingRemovals == 0 then
-                    ChatOnlyPrint(ply, "\x05", string.format("✅ Killed %d/%d %s%s", 
-                        removedCount, 
-                        totalFound, 
-                        targetClass, 
-                        (specificTargetModel and " (model: " .. specificTargetModel .. ")" or "")
-                    ))
-                    if IsValid(ply) then
-                        ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")")
+                    SendKillSummary()
+                end
+            else
+                -- Dissolve effect path
+                local dissolverName = "npc_classkill_diss_" .. CurTime() .. "_" .. math.random(10000)
+                
+                local npcOriginalName = npc:GetName()
+                if npcOriginalName == "" then
+                    npc:SetName("temp_dissolve_target_" .. CurTime() .. "_" .. math.random(10000))
+                end
+
+                local dissolver = ents.Create("env_entity_dissolver")
+                if IsValid(dissolver) then
+                    dissolver:SetName(dissolverName)
+                    dissolver:SetKeyValue("dissolvetype", tostring(dissolveType))
+                    dissolver:Spawn()
+                    dissolver:Activate()
+                    
+                    dissolver:Fire("Dissolve", npc:GetName(), 0)
+                    
+                    timer.Simple(0.2, function()
+                        if IsValid(npc) then
+                            npc:Remove()
+                        end
+                        
+                        if IsValid(dissolver) then
+                            dissolver:Remove()
+                        end
+
+                        removedCount = removedCount + 1
+                        pendingRemovals = pendingRemovals - 1
+
+                        if pendingRemovals == 0 then
+                            SendKillSummary()
+                        end
+                    end)
+                else
+                    if IsValid(npc) then
+                        npc:Remove()
+                    end
+                    pendingRemovals = pendingRemovals - 1
+                    removedCount = removedCount + 1
+                    
+                    if pendingRemovals == 0 then
+                        SendKillSummary()
                     end
                 end
             end
@@ -874,14 +852,14 @@ end
 
         if not parsedArgs or not parsedArgs.newClass then
             ChatOnlyPrint(ply, "\x07", "❗ Usage: npcreplace <target_class> [target_model (optional)] <new_class> [new_model (optional)] [spawn_weapon (optional, 'none' for no weapon)] [health (optional)]")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 1: npcreplace npc_combine_s npc_metropolice")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 2: npcreplace npc_combine_s models/combine_soldier.mdl npc_metropolice models/combine_elite.mdl")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 3: npcreplace npc_citizen models/humans/group01/male_01.mdl npc_citizen models/humans/group01/female_01.mdl weapon_smg1")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 4: npcreplace npc_zombie npc_antlion weapon_shotgun")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 5: npcreplace npc_combine_s npc_metropolice weapon_smg1 500")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 6: npcreplace npc_zombie npc_antlion 1000")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 7: npcreplace npc_combine_s npc_metropolice none")
-            ChatOnlyPrint(ply, "\x07", "💡 For custom models, use the FULL model path, e.g., models/mymod/mymodel.mdl")
+            ChatOnlyPrint(ply, "\x07", "Example 1: npcreplace npc_combine_s npc_metropolice")
+            ChatOnlyPrint(ply, "\x07", "Example 2: npcreplace npc_combine_s models/combine_soldier.mdl npc_metropolice models/combine_elite.mdl")
+            ChatOnlyPrint(ply, "\x07", "Example 3: npcreplace npc_citizen models/humans/group01/male_01.mdl npc_citizen models/humans/group01/female_01.mdl weapon_smg1")
+            ChatOnlyPrint(ply, "\x07", "Example 4: npcreplace npc_zombie npc_antlion weapon_shotgun")
+            ChatOnlyPrint(ply, "\x07", "Example 5: npcreplace npc_combine_s npc_metropolice weapon_smg1 500")
+            ChatOnlyPrint(ply, "\x07", "Example 6: npcreplace npc_zombie npc_antlion 1000")
+            ChatOnlyPrint(ply, "\x07", "Example 7: npcreplace npc_combine_s npc_metropolice none")
+            ChatOnlyPrint(ply, "\x07", "For custom models, use the FULL model path, e.g., models/mymod/mymodel.mdl")
             return
         end
 
@@ -898,14 +876,14 @@ end
 
             if not parsedArgs or not parsedArgs.newClass then
                 ChatOnlyPrint(ply, "\x07", "❗ Usage: !npcreplace <target_class> [target_model (optional)] <new_class> [new_model (optional)] [spawn_weapon (optional, 'none' for no weapon)] [health (optional)]")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 1: !npcreplace npc_combine_s npc_metropolice")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 2: !npcreplace npc_combine_s models/combine_soldier.mdl npc_metropolice models/combine_elite.mdl")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 3: !npcreplace npc_citizen models/humans/group01/male_01.mdl npc_citizen models/humans/group01/female_01.mdl weapon_smg1")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 4: !npcreplace npc_zombie npc_antlion weapon_shotgun")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 5: !npcreplace npc_combine_s npc_metropolice weapon_smg1 500")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 6: !npcreplace npc_zombie npc_antlion 1000")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 7: !npcreplace npc_combine_s npc_metropolice none")
-                ChatOnlyPrint(ply, "\x07", "💡 For custom models, use the FULL model path, e.g., models/mymod/mymodel.mdl")
+                ChatOnlyPrint(ply, "\x07", "Example 1: !npcreplace npc_combine_s npc_metropolice")
+                ChatOnlyPrint(ply, "\x07", "Example 2: !npcreplace npc_combine_s models/combine_soldier.mdl npc_metropolice models/combine_elite.mdl")
+                ChatOnlyPrint(ply, "\x07", "Example 3: !npcreplace npc_citizen models/humans/group01/male_01.mdl npc_citizen models/humans/group01/female_01.mdl weapon_smg1")
+                ChatOnlyPrint(ply, "\x07", "Example 4: !npcreplace npc_zombie npc_antlion weapon_shotgun")
+                ChatOnlyPrint(ply, "\x07", "Example 5: !npcreplace npc_combine_s npc_metropolice weapon_smg1 500")
+                ChatOnlyPrint(ply, "\x07", "Example 6: !npcreplace npc_zombie npc_antlion 1000")
+                ChatOnlyPrint(ply, "\x07", "Example 7: !npcreplace npc_combine_s npc_metropolice none")
+                ChatOnlyPrint(ply, "\x07", "For custom models, use the FULL model path, e.g., models/mymod/mymodel.mdl")
                 return ""
             end
             
@@ -918,8 +896,8 @@ end
     concommand.Add("npcclasskill", function(ply, cmd, args)
         if #args < 1 then
             ChatOnlyPrint(ply, "\x07", "❗ Usage: npcclasskill <target_class> [target_model (optional)]")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 1: npcclasskill npc_zombie")
-            ChatOnlyPrint(ply, "\x07", "💡 Example 2: npcclasskill npc_combine_s models/combine_soldier.mdl")
+            ChatOnlyPrint(ply, "\x07", "Example 1: npcclasskill npc_zombie")
+            ChatOnlyPrint(ply, "\x07", "Example 2: npcclasskill npc_combine_s models/combine_soldier.mdl")
             ChatOnlyPrint(ply, "\x07", "⛔ Note: Restricted classes cannot be killed")
             return
         end
@@ -927,7 +905,6 @@ end
         local targetClass = args[1]
         local targetModel = (#args >= 2) and args[2] or nil
         
-        -- Validate if second argument is a model path
         if targetModel and not IsModelPath(targetModel) then
             targetModel = nil
         end
@@ -943,8 +920,8 @@ end
             
             if #parts < 1 then
                 ChatOnlyPrint(ply, "\x07", "❗ Usage: !npcclasskill <target_class> [target_model (optional)]")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 1: !npcclasskill npc_zombie")
-                ChatOnlyPrint(ply, "\x07", "💡 Example 2: !npcclasskill npc_combine_s models/combine_soldier.mdl")
+                ChatOnlyPrint(ply, "\x07", "Example 1: !npcclasskill npc_zombie")
+                ChatOnlyPrint(ply, "\x07", "Example 2: !npcclasskill npc_combine_s models/combine_soldier.mdl")
                 ChatOnlyPrint(ply, "\x07", "⛔ Note: Restricted classes cannot be killed")
                 return ""
             end
@@ -952,7 +929,6 @@ end
             local targetClass = parts[1]
             local targetModel = (#parts >= 2) and parts[2] or nil
             
-            -- Validate if second argument is a model path
             if targetModel and not IsModelPath(targetModel) then
                 targetModel = nil
             end
@@ -963,30 +939,82 @@ end
     end)
 
     ----------------------------------------------------------------------
+    -- NPC Removal Effect command  (Console: npcremovaleffect | Chat: !npcremovaleffect)
+    -- Sets the dissolve effect used by npcreplace and npcclasskill.
+    -- Persists across map changes and game restarts via archived ConVar.
+    ----------------------------------------------------------------------
+    concommand.Add("npcremovaleffect", function(ply, cmd, args)
+        local validList = table.concat(DISSOLVE_EFFECT_NAMES, ", ")
+
+        if #args < 1 then
+            local current = string.lower(GetConVar("npcreplacer_effect"):GetString())
+            ChatOnlyPrint(ply, "\x07", "❗ Usage: npcremovaleffect <effect>")
+            ChatOnlyPrint(ply, "\x07", "❌ Valid effects: " .. validList)
+            ChatOnlyPrint(ply, "\x03", "Current effect: " .. current)
+            return
+        end
+
+        local chosen = string.lower(args[1])
+        if DISSOLVE_EFFECTS[chosen] == nil then
+            ChatOnlyPrint(ply, "\x04", "❌ Invalid effect '" .. args[1] .. "'.")
+            ChatOnlyPrint(ply, "\x07", "❌ Valid effects: " .. validList)
+            if IsValid(ply) then ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
+            return
+        end
+
+        RunConsoleCommand("npcreplacer_effect", chosen)
+        ChatOnlyPrint(ply, "\x05", "✅ Dissolve effect set to '" .. chosen .. "'.")
+        if IsValid(ply) then ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")") end
+    end, NPCRemovalEffectAutocomplete)
+
+    -- Chat command for npcremovaleffect
+    hook.Add("PlayerSay", "NPCRemovalEffectChatCommand", function(ply, text)
+        local lowerText = string.lower(text)
+        if lowerText == "!npcremovaleffect" or lowerText:sub(1, 18) == "!npcremovaleffect " then
+            local validList = table.concat(DISSOLVE_EFFECT_NAMES, ", ")
+
+            local parts = string.Explode(" ", text)
+            if not parts[2] or parts[2] == "" then
+                local current = string.lower(GetConVar("npcreplacer_effect"):GetString())
+                ChatOnlyPrint(ply, "\x07", "❗ Usage: !npcremovaleffect <effect>")
+                ChatOnlyPrint(ply, "\x07", "❌ Valid effects: " .. validList)
+                ChatOnlyPrint(ply, "\x03", "Current effect: " .. current)
+                return ""
+            end
+
+            local chosen = string.lower(parts[2])
+            if DISSOLVE_EFFECTS[chosen] == nil then
+                ChatOnlyPrint(ply, "\x04", "❌ Invalid effect '" .. parts[2] .. "'.")
+                ChatOnlyPrint(ply, "\x07", "❌ Valid effects: " .. validList)
+                if IsValid(ply) then ply:SendLua("surface.PlaySound(\"buttons/button2.wav\")") end
+                return ""
+            end
+
+            RunConsoleCommand("npcreplacer_effect", chosen)
+            ChatOnlyPrint(ply, "\x05", "✅ Dissolve effect set to '" .. chosen .. "'.")
+            if IsValid(ply) then ply:SendLua("surface.PlaySound(\"buttons/button14.wav\")") end
+            return ""
+        end
+    end)
+
+    ----------------------------------------------------------------------
     -- NPC Check functionality
     ----------------------------------------------------------------------
     local function CheckNPCs(ply)
-        local npcCounts = {} -- Stores counts for each class
-        local npcModelCounts = {} -- Stores counts for each class + model combination
+        local npcCounts = {}
+        local npcModelCounts = {}
 
-        -- Iterate over all entities on the server
         for _, ent in ipairs(ents.GetAll()) do
-            -- Check for standard NPCs (IsNPC) and DrGBase nextbots (IsNextBot + IsDrGNextbot)
-            -- DrGBase NPCs are nextbots rather than SNPCs, so IsNPC() returns false for them.
-            -- We check ent.IsDrGNextbot to avoid counting non-NPC nextbot entities.
             if IsValid(ent) and (ent:IsNPC() or (ent:IsNextBot() and ent.IsDrGNextbot)) then
                 local class = ent:GetClass()
-                -- NEW: Ignore restricted NPC classes for checking
                 if RESTRICTED_NPC_CLASSES[string.lower(class)] then
-                    continue -- Skip this NPC
+                    continue
                 end
 
-                local model = ent:GetModel() or "N/A" -- Get model, default to "N/A" if nil
+                local model = ent:GetModel() or "N/A"
 
-                -- Count by class
                 npcCounts[class] = (npcCounts[class] or 0) + 1
 
-                -- Count by class + model
                 if not npcModelCounts[class] then
                     npcModelCounts[class] = {}
                 end
@@ -1005,22 +1033,16 @@ end
             return
         end
 
-        -- Prepare messages for console (detailed breakdown)
         local consoleMessages = {}
         table.insert(consoleMessages, "NPC Breakdown - " .. totalNPCs .. " total:")
-        for class, models in sortedPairs(npcModelCounts) do -- sortedPairs for consistent output
+        for class, models in sortedPairs(npcModelCounts) do
             table.insert(consoleMessages, "  " .. class .. " (" .. npcCounts[class] .. " total):")
             for model, count in sortedPairs(models) do
                 table.insert(consoleMessages, "    - " .. model .. ": " .. count)
             end
         end
 
-        -- Prepare messages for chat (summary only)
-        -- chat.AddText via SendLua has practical limits, so we split the summary
-        -- into multiple messages. Each entry is "class: count" separated by commas.
-        -- We accumulate entries until adding another would exceed the limit, then send
-        -- the current line and start a new one.
-        local maxBytes = 200 -- Conservative limit for SendLua payload
+        local maxBytes = 200
         local chatLines = {}
         local currentLine = ""
         for class, count in sortedPairs(npcCounts) do
@@ -1030,7 +1052,6 @@ end
             else
                 local candidate = currentLine .. ", " .. entry
                 if #candidate > maxBytes then
-                    -- Current line is full, save it and start a new one
                     table.insert(chatLines, currentLine)
                     currentLine = entry
                 else
@@ -1042,12 +1063,10 @@ end
             table.insert(chatLines, currentLine)
         end
 
-        -- Print to console
         for _, msg in ipairs(consoleMessages) do
             print(msg)
         end
 
-        -- Send summary to player's chat only (not console) split across multiple messages if needed
         if IsValid(ply) then
             ChatOnlyPrint(ply, "\x06", "NPC Summary - " .. totalNPCs .. " total:")
             for _, line in ipairs(chatLines) do
@@ -1057,7 +1076,6 @@ end
         end
     end
 
-    -- Utility function to sort table keys for consistent output
     function sortedPairs(t)
         local keys = {}
         for k in pairs(t) do table.insert(keys, k) end
@@ -1071,17 +1089,15 @@ end
         end
     end
 
-    -- Console command for npccheck
     concommand.Add("npccheck", function(ply, cmd, args)
         CheckNPCs(ply)
     end)
 
-    -- Chat command for npccheck
     hook.Add("PlayerSay", "NPCCheckChatCommand", function(ply, text)
         local lowerText = string.lower(text)
         if lowerText == "!npccheck" then
             CheckNPCs(ply)
-            return "" -- Consume the chat command
+            return ""
         end
     end)
 end
