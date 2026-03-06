@@ -915,8 +915,8 @@ end
     -- Chat command for npcclasskill
     hook.Add("PlayerSay", "NPCClassKillChatCommand", function(ply, text)
         local lowerText = string.lower(text)
-        if lowerText:sub(1, 13) == "!npcclasskill " then
-            local parts = string.Explode(" ", text:sub(14))
+        if lowerText:sub(1, 14) == "!npcclasskill " then
+            local parts = string.Explode(" ", text:sub(15))
             
             if #parts < 1 then
                 ChatOnlyPrint(ply, "\x07", "❗ Usage: !npcclasskill <target_class> [target_model (optional)]")
